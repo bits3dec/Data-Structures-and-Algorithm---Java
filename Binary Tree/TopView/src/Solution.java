@@ -82,9 +82,9 @@ public class Solution {
 			}
 		}
 		
-		/*
-		 * Collections.sort(nodes, (n1, n2) -> { return n1.hd - n2.hd; });
-		 */
+		Collections.sort(nodes, (n1, n2) -> {
+			return n1.hd - n2.hd;
+		});
 		
 		result.addAll(nodes.stream().map(node -> node.node.val).collect(Collectors.toList()));
 		
