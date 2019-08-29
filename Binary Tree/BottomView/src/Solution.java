@@ -2,12 +2,22 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 class TreeNode {
-	int val;
+	int data;
 	TreeNode left;
 	TreeNode right;
 
-	TreeNode(int x) {
-		val = x;
+	public TreeNode(int data) {
+		this.data = data;
+	}
+}
+
+class TreeNodeItem {
+	TreeNode node;
+	int hd;
+	
+	TreeNodeItem(TreeNode node, int hd) {
+		this.node = node;
+		this.hd = hd;
 	}
 }
 
@@ -34,62 +44,39 @@ public class Solution {
         root.left.right.right.right = new TreeNode(10);
         root.left.left.left = new TreeNode(7); 
 
-        List<Integer> topViewNodes = topView(root);
-        for(Integer val : topViewNodes) {
+        List<Integer> bottomViewNodes = bottomView(root);
+        for(Integer val : bottomViewNodes) {
         	System.out.print(val + " ");
         }
 	}
 	
-	public static List<Integer> topView(TreeNode root) {
+	public static List<Integer> bottomView(TreeNode root) {
 		if(root == null) {
 			return null;
 		}
 		
-		List<Integer> result = topViewUtil(root);
-		return result;
-	}
-	
-	private static List<Integer> topViewUtil(TreeNode root) {
 		List<Integer> result = new ArrayList<>();
-		
-		class TreeNodeItem {
-			TreeNode node;
-			int hd;
-			
-			TreeNodeItem(TreeNode node, int hd) {
-				this.node = node;
-				this.hd = hd;
-			}
-		}
-		
 		List<TreeNodeItem> nodes = new ArrayList<>();
-		Queue<TreeNodeItem> queue = new LinkedList<>();
 		Set<Integer> hdSet = new HashSet<>();
-		
-		queue.add(new TreeNodeItem(root, 0));
-		
-		while(queue.isEmpty() == false) {
-			TreeNodeItem temp = queue.poll();
-			if(hdSet.contains(temp.hd) == false) {
-				nodes.add(temp);
-				hdSet.add(temp.hd);
-;			}
-			if(temp.node.left != null) {
-				queue.add(new TreeNodeItem(temp.node.left, temp.hd-1));
-			}
-			if(temp.node.right != null) {
-				queue.add(new TreeNodeItem(temp.node.right, temp.hd+1));
-			}
-		}
-		
+		bottomViewUtil(root, 0, hdSet, nodes);
 		Collections.sort(nodes, (n1, n2) -> {
 			return n1.hd - n2.hd;
 		});
-		
-		result.addAll(nodes.stream().map(nodeItem -> nodeItem.node.val).collect(Collectors.toList()));
+		result.addAll(nodes.stream().map(nodeItem -> nodeItem.node.data).collect(Collectors.toList()));
 		
 		return result;
 	}
+	
+	private static void bottomViewUtil(TreeNode root, int hd, Set<Integer> hdSet, List<TreeNodeItem> nodes) {
+		if(root == null) {
+			return;
+		}
+		
+		bottomViewUtil(root.left, hd-1, hdSet, nodes);
+		bottomViewUtil(root.right, hd+1, hdSet, nodes);
+		if(hdSet.contains(hd) == false) {
+			nodes.add(new TreeNodeItem(root,hd));
+			hdSet.add(hd);
+		}
+	}
 }
-
-
