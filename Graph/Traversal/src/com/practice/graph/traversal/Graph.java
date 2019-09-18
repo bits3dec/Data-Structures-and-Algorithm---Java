@@ -1,3 +1,4 @@
+package com.practice.graph.traversal;
 import java.util.LinkedList;
 
 public class Graph {
