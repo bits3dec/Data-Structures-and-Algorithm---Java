@@ -13,12 +13,16 @@ public class DFS {
 	
 	public void dfs(int s) {
 		boolean visited[] = new boolean[v];
-		dfsUtil(s, visited);
+		for(int i = 0; i < v; ++i) {
+			if(visited[i] == false) {
+				dfsUtil(s, visited);
+			}
+		}	
  	}
 	
-	private void dfsUtil(int u, boolean visited[]) {
-		System.out.println(u);
+	private void dfsUtil(int u, boolean visited[]) {	
 		visited[u] = true;
+		System.out.println(u);
 		
 	    Iterator<Integer> it = adj[u].listIterator();
 		while(it.hasNext() == true) {

@@ -9,9 +9,8 @@ public class Graph {
 	
 	Graph(int v, int weights[][]) {
 		this.v = v;
-		this.weights = weights;
-		
-		adj = new LinkedList[v];
+		this.weights = weights;		
+		this.adj = new LinkedList[v];
 		for(int i = 0; i < v; ++i) {
 			adj[i] = new LinkedList<Integer>();
 		}

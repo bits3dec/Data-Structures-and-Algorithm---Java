@@ -2,9 +2,9 @@ package com.practice.graph.shortestDistance;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Queue;
 
-public class BellmanFordAlgorithm {
-	
+public class BellmanFordAlgorithm {	
 	int v;
 	LinkedList<Integer> adj[];
 	int weights[][];
@@ -16,7 +16,7 @@ public class BellmanFordAlgorithm {
 	}
 	
 	void shortestDistance(int s) {
-		LinkedList<Integer> queue = new LinkedList<Integer>();
+		Queue<Integer> queue = new LinkedList<Integer>();
 		int distances[] = new int[v];
 		int paths[] = new int[v];
 		for(int i = 0; i < v; ++i) {

@@ -1,9 +1,6 @@
 package com.practice.graph.cyclic.undirected.disjointSets;
 
-import java.util.LinkedList;
-
 public class Graph {
-	
 	 int v;
      int e;
      Edge[] edges;
@@ -12,7 +9,7 @@ public class Graph {
      {
          this.v = v;
          this.e = e;
-         edges = new Edge[e];
+         this.edges = new Edge[e];
          for (int i = 0; i < e; ++i)
              edges[i] = new Edge();
      }

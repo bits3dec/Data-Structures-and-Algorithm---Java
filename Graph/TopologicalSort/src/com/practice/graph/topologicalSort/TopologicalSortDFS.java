@@ -10,7 +10,7 @@ public class TopologicalSortDFS {
 	
 	void topologicalSort(Graph g) {
 		int v = g.v;
-		adj = g.adj;
+		this.adj = g.adj;
 		
 		Stack<Integer> stack = new Stack<Integer>();
 		boolean visited[] = new boolean[v];
@@ -24,7 +24,7 @@ public class TopologicalSortDFS {
 		print(stack);
 	}
 	
-	private void dfsUtil(int u, boolean visited[], Stack stack) {
+	private void dfsUtil(int u, boolean visited[], Stack<Integer> stack) {
 		visited[u] = true;
 		
 		Iterator<Integer> it = adj[u].iterator();
@@ -33,7 +33,7 @@ public class TopologicalSortDFS {
 			if(visited[v] == false) {
 				dfsUtil(v, visited, stack);
 			}
-		}
+		}	
 		
 		stack.push(u);
 	}

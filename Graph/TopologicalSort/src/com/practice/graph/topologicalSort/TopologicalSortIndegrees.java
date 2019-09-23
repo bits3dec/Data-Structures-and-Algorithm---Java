@@ -2,6 +2,7 @@ package com.practice.graph.topologicalSort;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class TopologicalSortIndegrees {
 	
@@ -19,7 +20,7 @@ public class TopologicalSortIndegrees {
 			}
 		}
 		
-		LinkedList<Integer> queue = new LinkedList<Integer>();
+		Queue<Integer> queue = new LinkedList<Integer>();
 		for(int i = 0; i < v; ++i) {
 			if(indegrees[i] == 0) {
 				queue.add(i);
