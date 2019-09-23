@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
+//T:O(E*V)
 public class BellmanFordAlgorithm {	
 	int v;
 	LinkedList<Integer> adj[];
