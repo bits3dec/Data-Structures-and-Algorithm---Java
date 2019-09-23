@@ -1,4 +1,4 @@
-package com.practice.graph.shortestDistance;
+package com.practice.graph.shortestDistanceWithoutPQ;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -7,7 +7,7 @@ import java.util.Set;
 
 //T:O(E*log(V))
 //Set<Integer> settled: Processed nodes(shortest path found)
-//Heap heap(Priority queue): Non processed nodes(still in progress to find the shortest path)
+//NodeCollection: Non processed nodes(still in progress to find the shortest path)
 //Note- DijkstrasAlgorithm will not work for negative edges
 public class DijkstrasAlgorithm {
 	int v;
@@ -22,43 +22,39 @@ public class DijkstrasAlgorithm {
 		int distances[] = new int[v];
 		int paths[] = new int[v];
 		Arrays.fill(distances, Integer.MAX_VALUE);
-		Arrays.fill(paths,-1);
+		Arrays.fill(paths, -1);
 		
-		//Visited nodes
+		//Settled set
 		Set<Integer> settled = new HashSet<Integer>();
-		//Priority Queue
-		Heap heap = new Heap(v);
+		//Unsettled set
+		NodeCollection unsettled = new NodeCollection();
 		
-		//Source
-		Node node = new Node(src, 0);
-		heap.insert(node);
+		//Add all nodes to the unsettled set
+		for(int i = 0; i < v; ++i) {
+			unsettled.insert(i, Integer.MAX_VALUE);
+		}
+		
 		distances[src] = 0;
 		paths[src] = -1;
+		//update the source in the unsettled set with initial values
+		unsettled.insert(src, distances[src]);
 		
-		//Process till all the nodes are calculated with the shortest distance
+		//Process till the settled set contains all the nodes
 		while(settled.size() != v) {
-			//Get the minimum distance adjacent node from the unvisited nodes using priority queue
-			Node temp = heap.deleteMin();
-			int u = temp.value;
-			int distance = temp.distance;
-			//add it to visited nodes
+			int u = unsettled.deleteMin();
+			//Add the node to the settled set
 			settled.add(u);
 			
-			//Calculate adjacent nodes distance for the current node and add it to priority queue
 			for(int v : adj[u]) {
-				//Process only non-processed nodes
+				//Check shortest distance for only unsettled nodes
 				if(settled.contains(v) == false) {
-					int newDistance = distance + weights[u][v];
+					int newDistance = distances[u] + weights[u][v];
 					if(newDistance < distances[v]) {
-						//update the new minimum distance and path
 						distances[v] = newDistance;
-						paths[v] = u;
+						paths[v] = u;					
 					}
-					node = new Node(v, distances[v]);
-					//Note- We are not updating the old node if already present.
-					//We are adding a new node every time in heap with the updated distance. 
-					//This will work fine since we are checking for settled set to terminate the recursion
-					heap.insert(node);
+					//Insert or update the node in unsettled set
+					unsettled.insert(v, distances[v]);
 				}
 			}
 		}	
