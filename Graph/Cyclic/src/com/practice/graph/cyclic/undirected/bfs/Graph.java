@@ -7,9 +7,8 @@ public class Graph {
 	LinkedList<Integer> adj[];
 	
 	Graph(int v) {
-		this.v = v;
-		
-		adj = new LinkedList[v];
+		this.v = v;	
+		this.adj = new LinkedList[v];
 		for(int i = 0; i < v; ++i) {
 			adj[i] = new LinkedList<Integer>();
 		}

@@ -1,6 +1,7 @@
 package com.practice.graph.cyclic.undirected.bfs;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class UndirectedGraphUtil {
 	static int v;
@@ -26,7 +27,7 @@ public class UndirectedGraphUtil {
 	}
 	
 	private static boolean isCyclicUtil(int s, boolean visited[], int parents[]) {
-		LinkedList<Integer> queue = new LinkedList<Integer>();
+		Queue<Integer> queue = new LinkedList<Integer>();
 		queue.add(s);
 		visited[s] = true;
 		

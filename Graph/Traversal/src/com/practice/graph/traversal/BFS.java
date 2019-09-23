@@ -1,6 +1,7 @@
 package com.practice.graph.traversal;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class BFS {
 	private int v;
@@ -12,7 +13,7 @@ public class BFS {
 	}
 	
 	public void bfs(int s) {
-		LinkedList<Integer> queue = new LinkedList<Integer>();
+		Queue<Integer> queue = new LinkedList<Integer>();
 		boolean visited[] = new boolean[v];
 		queue.add(s);
 		visited[s] = true;
