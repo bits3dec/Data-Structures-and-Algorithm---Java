@@ -3,6 +3,10 @@ package com.practice.dp.climbingStairs;
 public class ClimbingStairs {
 	
 	public int countWaysUsingStep1_2(int n) {
+		if(n == 0 || n == 1) {
+            return 1;
+        }
+        
 		int res[] = new int [n+1];
 		//res[j] denotes the num of ways to reach nth stair using step1 and step2
 		//e.g-
@@ -17,6 +21,13 @@ public class ClimbingStairs {
 	}
 	
 	public int countWaysUsingStep1_2_3(int n) {
+		if(n == 0 || n == 1) {
+            return 1;
+        }
+        if(n == 2) {
+            return 2;
+        }
+		
 		int res[] = new int[n+1];
 		//res[j] denotes the num of ways to reach the nth stair using step1, step2 and step3
 		
