@@ -28,8 +28,7 @@ public class MaximumSubArray {
 			//For intermediate subarray
 			if(map.get(sum) == null) {
 				map.put(sum, i);
-			} else {
-			
+			} else {		
 				int previousIndex = map.get(sum);
 				int currentLength = i - previousIndex;
 				if(currentLength > maxLength) {
