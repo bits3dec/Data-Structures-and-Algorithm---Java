@@ -25,18 +25,13 @@ public class Solution2 {
         else
             System.out.println("Not a BST"); 
     }
-	
-    public static boolean isBST(TreeNode root) {
-    	prev = null;
-    	return isBST(root, prev);
-    }
     
-	public static boolean isBST(TreeNode root, TreeNode prev) {
+	public static boolean isBST(TreeNode root) {
 		if(root == null) {
 			return true;
 		}
 		
-		if(isBST(root.left, prev) == false) {
+		if(isBST(root.left) == false) {
 			return false;
 		}
 		if(prev != null && root.data < prev.data) {
@@ -44,6 +39,6 @@ public class Solution2 {
 		}
 		prev = root;
 		
-		return isBST(root.right, prev);
+		return isBST(root.right);
 	}
 }
