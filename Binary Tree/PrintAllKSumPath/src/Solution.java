@@ -46,7 +46,7 @@ public class Solution {
 
 	private static void printPath(List<Integer> path, int ancestorIndex) {
 		for (int index = path.size() - 1; index >= ancestorIndex; --index) {
-			System.out.println(path.get(index) + " ");
+			System.out.print(path.get(index) + " ");
 		}
 		System.out.println();
 	}

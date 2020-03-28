@@ -2,8 +2,9 @@ package com.practice.heap.kLargestElement;
 
 public class Client {
 	public static void main(String[] args) {
-		int arr[] = new int[] {2, 4, 53, 32, 123, 34 };
-		int k = 2;
+		//int arr[] = new int[] {2, 4, 53, 32, 123, 34 };
+		int arr[] = new int[] {12, 4, 43, 11, 10, 47, 87};
+		int k = 4;
 		
 		print(arr);
 		
