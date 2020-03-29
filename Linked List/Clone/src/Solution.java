@@ -73,9 +73,10 @@ public class Solution {
 	
 	private static void print(Node head) {
 		while(head != null) {
-			System.out.print(head.data + " ");
+			System.out.print("Data: " + head.data + "|" + "HashCode: " + head.hashCode() + " || ");
 			head = head.next;
-		}
+        }
+        System.out.println();
 	}
 }
 
