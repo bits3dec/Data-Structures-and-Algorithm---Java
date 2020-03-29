@@ -2,6 +2,7 @@
 public class Solution {
 	public static void main(String[] args) 
     { 
+        // 1->2->3->4->5->6->7->8->9->10
         Node head = new Node(1);
         head.next = new Node(2); 
         head.next.next = new Node(3); 
@@ -13,8 +14,6 @@ public class Solution {
         head.next.next.next.next.next.next.next.next = new Node(9);
         head.next.next.next.next.next.next.next.next.next = new Node(10); 
         
-        // 1->2->3->4->5->6->7->8->9->10
-        
         System.out.println("Given Linked list"); 
         printList(head); 
         head = reverseKSize(head, 4); 
@@ -25,25 +24,29 @@ public class Solution {
 	
 	public static Node reverseKSize(Node head, int k) {
 		if(head == null) {
-			return null;
-		}
-		
-		int count = 0;
-		Node curr = head;
-		Node prev = null;
-		Node next = null;
-		while(curr != null && count < k) {
-			next = curr.next;
-			curr.next = prev;
-			prev = curr;
-			curr = next;
-			++count;
-		}
-		
-		//next pointing to (k+1)th node
-		head.next = reverseKSize(next, k);
-		
-		return prev;
+            return null;
+        }
+
+        Node current = head;
+        Node prev = null;
+        Node next = null;
+        int count = 0;
+
+        while(current != null && count < k) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+            ++count;
+        }
+
+        //next is now pointing to (k+1)th node
+        if(next != null) {
+            head.next = reverseKSize(next, k);
+        }
+
+        head = prev;
+        return head;
 	}
 	
 	private static void printList(Node head) {
