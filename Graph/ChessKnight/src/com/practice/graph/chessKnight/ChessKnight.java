@@ -21,7 +21,7 @@ public class ChessKnight {
 		Queue<Cell> queue = new LinkedList<Cell>();
 		queue.add(source);
 		visited[source.x][source.y] = true;
-		int minSteps = 0;
+		int minSteps = Integer.MAX_VALUE;
 		
 		while(queue.isEmpty() == false) {
 			Cell temp = queue.poll();

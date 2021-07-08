@@ -13,11 +13,7 @@ public class DFS {
 	
 	public void dfs(int s) {
 		boolean visited[] = new boolean[v];
-		for(int i = 0; i < v; ++i) {
-			if(visited[i] == false) {
-				dfsUtil(s, visited);
-			}
-		}	
+		dfsUtil(s, visited);	
  	}
 	
 	private void dfsUtil(int u, boolean visited[]) {	
